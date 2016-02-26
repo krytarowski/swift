@@ -45,7 +45,7 @@ _swift_Glibc_fcntlPtr(int fd, int cmd, void* ptr) {
 }
 
 extern char **
-_swift_FreeBSD_getEnv() {
+_swift_BSD_getEnv() {
   extern char **environ;
   return environ;
 }

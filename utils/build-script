@@ -503,6 +503,9 @@ build the Debug variant of the Swift standard library and SDK overlay""",
     run_tests_group.add_argument("--skip-test-freebsd",
         help="skip testing Swift stdlibs for FreeBSD",
         action="store_true")
+    run_tests_group.add_argument("--skip-test-netbsd",
+        help="skip testing Swift stdlibs for NetBSD",
+        action="store_true")
     run_tests_group.add_argument("--skip-test-cygwin",
         help="skip testing Swift stdlibs for Cygwin",
         action="store_true")
@@ -521,6 +524,9 @@ build the Debug variant of the Swift standard library and SDK overlay""",
         action="store_true")
     run_build_group.add_argument("--skip-build-freebsd",
         help="skip building Swift stdlibs for FreeBSD",
+        action="store_true")
+    run_build_group.add_argument("--skip-build-netbsd",
+        help="skip building Swift stdlibs for NetBSD",
         action="store_true")
     run_build_group.add_argument("--skip-build-cygwin",
         help="skip building Swift stdlibs for Cygwin",
@@ -706,6 +712,7 @@ the number of parallel build jobs to use""",
             "--skip-test-libdispatch",
             "--skip-test-linux",
             "--skip-test-freebsd",
+            "--skip-test-netbsd",
             "--skip-test-cygwin",
             "--skip-test-osx",
             "--skip-test-ios",
@@ -788,6 +795,7 @@ the number of parallel build jobs to use""",
             "--skip-build-swift",
             "--skip-build-linux",
             "--skip-build-freebsd",
+            "--skip-build-netbsd",
             "--skip-build-cygwin",
             "--skip-build-osx",
             "--skip-build-ios",
@@ -923,12 +931,16 @@ the number of parallel build jobs to use""",
         build_script_impl_args += ["--skip-build-linux"]
     if args.skip_build_freebsd:
         build_script_impl_args += ["--skip-build-freebsd"]
+    if args.skip_build_netbsd:
+        build_script_impl_args += ["--skip-build-netbsd"]
     if args.skip_build_cygwin:
         build_script_impl_args += ["--skip-build-cygwin"]
     if args.skip_test_linux:
         build_script_impl_args += ["--skip-test-linux"]
     if args.skip_test_freebsd:
         build_script_impl_args += ["--skip-test-freebsd"]
+    if args.skip_test_netbsd:
+        build_script_impl_args += ["--skip-test-netbsd"]
     if args.skip_test_cygwin:
         build_script_impl_args += ["--skip-test-cygwin"]
     build_script_impl_args += build_script_impl_inferred_args

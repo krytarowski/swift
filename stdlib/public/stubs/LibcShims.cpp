@@ -60,6 +60,10 @@ size_t _swift_stdlib_malloc_size(const void *ptr) {
 size_t _swift_stdlib_malloc_size(const void *ptr) {
   return malloc_usable_size(const_cast<void *>(ptr));
 }
+#elif defined(__NetBSD__)
+size_t _swift_stdlib_malloc_size(const void *ptr) {
+  return 0;
+}
 #else
 #error No malloc_size analog known for this platform/libc.
 #endif
@@ -72,4 +76,3 @@ _swift_stdlib_arc4random_uniform(__swift_uint32_t upper_bound) {
 }
 
 } // namespace swift
-

@@ -180,7 +180,7 @@ function(_add_variant_link_flags
 
   if("${sdk}" STREQUAL "LINUX")
     list(APPEND result "-lpthread" "-ldl")
-  elseif("${sdk}" STREQUAL "FREEBSD")
+  elseif("${sdk}" STREQUAL "FREEBSD" OR "${sdk}" STREQUAL "NETBSD")
     list(APPEND result "-lpthread")
   elseif("${sdk}" STREQUAL "CYGWIN")
     # No extra libraries required.
@@ -860,12 +860,13 @@ function(_add_swift_library_single target name)
     set(SWIFTLIB_SINGLE_API_NOTES "${module_name}")
   endif()
 
-  # On platforms that use ELF binaries (for now that is Linux and FreeBSD)
+  # On platforms that use ELF binaries (for now that is Linux and Free/NetBSD)
   # we add markers for metadata sections in the shared libraries using 
   # these object files.  This wouldn't be necessary if the link was done by
   # the swift binary: rdar://problem/19007002
   if("${CMAKE_SYSTEM_NAME}" STREQUAL "Linux" OR
-     "${CMAKE_SYSTEM_NAME}" STREQUAL "FreeBSD")
+     "${CMAKE_SYSTEM_NAME}" STREQUAL "FreeBSD" OR
+     "${CMAKE_SYSTEM_NAME}" STREQUAL "NetBSD")
 
     if("${libkind}" STREQUAL "SHARED")
       set(arch_subdir "${SWIFTLIB_DIR}/${SWIFTLIB_SINGLE_SUBDIR}")
@@ -905,7 +906,8 @@ function(_add_swift_library_single target name)
   # The section metadata objects are generated sources, and we need to tell CMake
   # not to expect to find them prior to their generation.
   if("${CMAKE_SYSTEM_NAME}" STREQUAL "Linux" OR
-     "${CMAKE_SYSTEM_NAME}" STREQUAL "FreeBSD")
+     "${CMAKE_SYSTEM_NAME}" STREQUAL "FreeBSD" OR)
+     "${CMAKE_SYSTEM_NAME}" STREQUAL "NetBSD")
     if("${libkind}" STREQUAL "SHARED")
       set_source_files_properties(${SWIFT_SECTIONS_OBJECT_BEGIN} PROPERTIES GENERATED 1)
       set_source_files_properties(${SWIFT_SECTIONS_OBJECT_END} PROPERTIES GENERATED 1)

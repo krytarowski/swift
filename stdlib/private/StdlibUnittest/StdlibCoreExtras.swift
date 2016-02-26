@@ -14,7 +14,7 @@ import SwiftPrivate
 import SwiftPrivateLibcExtras
 #if os(OSX) || os(iOS)
 import Darwin
-#elseif os(Linux) || os(FreeBSD)
+#elseif os(Linux) || os(FreeBSD) || os(NetBSD)
 import Glibc
 #endif
 
@@ -177,4 +177,3 @@ public func forAllPermutations<S : SequenceType>(
     return ()
   }
 }
-

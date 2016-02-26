@@ -18,14 +18,14 @@
 
 public var errno: Int32 {
   get {
-#if os(FreeBSD)
+#if os(FreeBSD) || os(NetBSD)
     return __error().memory
 #else
     return __errno_location().memory
 #endif
   }
   set(val) {
-#if os(FreeBSD)
+#if os(FreeBSD) || os(NetBSD)
     return __error().memory = val
 #else
     return __errno_location().memory = val
@@ -220,14 +220,14 @@ public func sem_open(
   return _swift_Glibc_sem_open4(name, oflag, mode, value)
 }
 
-// FreeBSD defines extern char **environ differently than Linux.
-#if os(FreeBSD)
+// Free/NetBSD define extern char **environ differently than Linux.
+#if os(FreeBSD) || os(NetBSD)
 @warn_unused_result
 @_silgen_name("_swift_FreeBSD_getEnv")
-func _swift_FreeBSD_getEnv(
+func _swift_BSD_getEnv(
 ) -> UnsafeMutablePointer<UnsafeMutablePointer<UnsafeMutablePointer<CChar>>>
 
 public var environ: UnsafeMutablePointer<UnsafeMutablePointer<CChar>> {
-  return _swift_FreeBSD_getEnv().memory
+  return _swift_BSD_getEnv().memory
 }
 #endif

@@ -455,6 +455,26 @@ elseif("${CMAKE_SYSTEM_NAME}" STREQUAL "FreeBSD")
 
   set(SWIFT_PRIMARY_VARIANT_SDK_default "FREEBSD")
   set(SWIFT_PRIMARY_VARIANT_ARCH_default "x86_64")
+
+elseif("${CMAKE_SYSTEM_NAME}" STREQUAL "NetBSD")
+  # FIXME: Using the host OS version won't produce correct results for
+  # cross-compilation.
+  string(REPLACE "[-].*" "" NETBSD_SYSTEM_VERSION ${CMAKE_SYSTEM_VERSION})
+  message(STATUS "NetBSD Version: ${NETBSD_SYSTEM_VERSION}")
+  configure_sdk_unix(NETBSD "NetBSD" "netbsd" "netbsd" "x86_64"
+    "x86_64-unknown-freebsd${FREEBSD_SYSTEM_VERSION}")
+
+  set(CMAKE_EXECUTABLE_FORMAT "ELF")
+
+  set(SWIFT_HOST_VARIANT "freebsd" CACHE STRING
+      "Deployment OS for Swift host tools (the compiler) [netbsd].")
+
+  set(SWIFT_HOST_VARIANT_SDK "NETBSD")
+  set(SWIFT_HOST_VARIANT_ARCH "x86_64")
+
+  set(SWIFT_PRIMARY_VARIANT_SDK_default "NETBSD")
+  set(SWIFT_PRIMARY_VARIANT_ARCH_default "x86_64")
+
 elseif("${CMAKE_SYSTEM_NAME}" STREQUAL "CYGWIN")
   configure_sdk_unix(CYGWIN "Cygwin" "windows" "cygwin" "x86_64" "x86_64-unknown-windows-cygnus")
 

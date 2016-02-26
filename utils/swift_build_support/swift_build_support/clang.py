@@ -45,6 +45,18 @@ def _freebsd_release_date():
         return None
 
 
+def _netbsd_release_date():
+    """
+    Return the release date for NetBSD operating system on this host.
+    If the release date cannot be ascertained, return None.
+    """
+    try:
+        return int(subprocess.check_output(
+            ['sysctl', '-n', 'kern.osrelease']).rstrip())
+    except subprocess.CalledProcessError:
+        return None
+
+
 def _first_clang(suffixes):
     """
     Return a CompilerExecutable with the first available versions of clang

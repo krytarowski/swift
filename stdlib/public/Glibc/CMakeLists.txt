@@ -23,6 +23,9 @@ endif()
 if(CMAKE_SYSTEM_NAME STREQUAL "FreeBSD")
 configure_file(module.freebsd.map.in "${CMAKE_CURRENT_BINARY_DIR}/module.map" @ONLY)
 endif()
+if(CMAKE_SYSTEM_NAME STREQUAL "NetBSD")
+configure_file(module.netbsd.map.in "${CMAKE_CURRENT_BINARY_DIR}/module.map" @ONLY)
+endif()
 
 add_custom_command_target(unused_var
     COMMAND

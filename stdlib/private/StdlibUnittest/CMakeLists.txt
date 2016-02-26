@@ -14,7 +14,9 @@ if(SWIFT_HOST_VARIANT MATCHES "${SWIFT_DARWIN_VARIANTS}")
   list(APPEND swift_stdlib_unittest_framework_depends
     Foundation)
 endif()
-if(SWIFT_HOST_VARIANT STREQUAL "linux" OR SWIFT_HOST_VARIANT STREQUAL "freebsd")
+if(SWIFT_HOST_VARIANT STREQUAL "linux" OR
+   SWIFT_HOST_VARIANT STREQUAL "freebsd" OR)
+   SWIFT_HOST_VARIANT STREQUAL "netbsd")
   list(APPEND swift_stdlib_unittest_module_depends
     Glibc)
 endif()
@@ -43,4 +45,3 @@ add_swift_library(swiftStdlibUnittest SHARED IS_STDLIB
   SWIFT_COMPILE_FLAGS ${swift_stdlib_unittest_compile_flags}
   FRAMEWORK_DEPENDS ${swift_stdlib_unittest_framework_depends}
   INSTALL_IN_COMPONENT stdlib-experimental)
-

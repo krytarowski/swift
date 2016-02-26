@@ -13,7 +13,7 @@
 import SwiftPrivate
 #if os(OSX) || os(iOS) || os(watchOS) || os(tvOS)
 import Darwin
-#elseif os(Linux) || os(FreeBSD)
+#elseif os(Linux) || os(FreeBSD) || os(NetBSD)
 import Glibc
 #endif
 
@@ -232,7 +232,7 @@ func _NSGetEnviron() -> UnsafeMutablePointer<UnsafeMutablePointer<UnsafeMutableP
 internal func _getEnviron() -> UnsafeMutablePointer<UnsafeMutablePointer<CChar>> {
 #if os(OSX) || os(iOS) || os(watchOS) || os(tvOS)
   return _NSGetEnviron().memory
-#elseif os(FreeBSD)
+#elseif os(FreeBSD) || os(NetBSD)
   return environ;
 #else
   return __environ

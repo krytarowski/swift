@@ -33,7 +33,7 @@
 #include <sstream>
 #include <cmath>
 #define fmodl(lhs, rhs) std::fmod(lhs, rhs)
-#else
+#elif !defined(__NetBSD__)
 #include <xlocale.h>
 #endif
 #include <limits>

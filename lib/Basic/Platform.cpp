@@ -66,6 +66,9 @@ StringRef swift::getPlatformNameForTriple(const llvm::Triple &triple) {
 
   if (triple.isOSFreeBSD())
     return "freebsd";
+
+  if (triple.isOSNetBSD())
+    return "netbsd";
 	
   if (triple.isOSWindows())
     return  "windows";

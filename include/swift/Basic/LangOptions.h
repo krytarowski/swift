@@ -181,7 +181,7 @@ namespace swift {
       } else if (Target.isWatchOS()) {
         Target.getOSVersion(major, minor, revision);
       } else if (Target.isOSLinux() || Target.isOSFreeBSD() ||
-                 Target.isOSWindows() ||
+                 Target.isOSWindows() || Target.isOSNetBSD() ||
                  Target.getTriple().empty())
       {
         major = minor = revision = 0;
@@ -245,4 +245,3 @@ namespace swift {
 }
 
 #endif // SWIFT_LANGOPTIONS_H
-

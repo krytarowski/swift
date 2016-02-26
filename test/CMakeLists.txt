@@ -58,7 +58,8 @@ function(get_test_dependencies SDK result_var_name)
      ("${SDK}" STREQUAL "WATCHOS_SIMULATOR") OR
      ("${SDK}" STREQUAL "LINUX") OR
      ("${SDK}" STREQUAL "CYGWIN") OR
-     ("${SDK}" STREQUAL "FREEBSD"))
+     ("${SDK}" STREQUAL "FREEBSD") OR)
+     ("${SDK}" STREQUAL "NETBSD"))
     # No extra dependencies.
   else()
     message(FATAL_ERROR "Unknown SDK: ${SDK}")
@@ -287,4 +288,3 @@ if(PYTHONINTERP_FOUND)
   endforeach()
 
 endif()
-

@@ -15,7 +15,9 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
   endif()
 endif()
 
-if(CMAKE_SYSTEM_NAME STREQUAL "Linux" OR CMAKE_SYSTEM_NAME STREQUAL "FreeBSD")
+if(CMAKE_SYSTEM_NAME STREQUAL "Linux" OR
+   CMAKE_SYSTEM_NAME STREQUAL "FreeBSD" OR
+   CMAKE_SYSTEM_NAME STREQUAL "NetBSD")
   add_subdirectory(StdlibUnittest)
   add_subdirectory(StdlibCollectionUnittest)
   add_subdirectory(SwiftPrivateLibcExtras)

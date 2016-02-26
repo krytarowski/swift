@@ -243,7 +243,7 @@ code for the target that is not the build machine:
   ``armv7``, ``armv7k``, ``arm64``).
 
 * ``%target-os``: the target operating system (``macosx``, ``darwin``,
-  ``linux``, ``freebsd``).
+  ``linux``, ``freebsd``, ``netbsd``).
 
 * ``%target-object-format``: the platform's object format (``elf``, ``macho``,
   ``coff``).
